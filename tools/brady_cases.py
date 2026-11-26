@@ -1,6 +1,6 @@
 """ACLS 心搏過緩案例題 → 題庫（改編自 TCH-012 interactive/index-v1.html）
 用法：python tools/brady_cases.py
-輸出：quizzes/ 底下 案例一、案例二、案例一＋二 三個資料夾
+輸出：quizzes/心搏過緩/
 """
 import csv, json, pathlib
 
@@ -71,6 +71,5 @@ def write(name, title, qs, note):
 
 
 SRC = "改編自 TCH-012 互動教材 index-v1.html"
-write("ACLS 心搏過緩 案例一_夜班的 HR 42", "ACLS 心搏過緩 案例一：夜班的 HR 42", CASE1, f"{SRC} 案例 A（A3 已移除）")
-write("ACLS 心搏過緩 案例二_HR 34 完全房室阻斷", "ACLS 心搏過緩 案例二：HR 34 的完全房室阻斷", CASE2, f"{SRC} 案例 B（B2 改寫為藥物選擇；B3、B5 已移除）")
-write("ACLS 心搏過緩 案例一＋二", "ACLS 心搏過緩：案例一＋二", CASE1 + CASE2, f"{SRC} 案例 A＋B")
+write("心搏過緩", "心搏過緩", CASE1 + CASE2,
+      f"{SRC}。第 1–3 題＝案例 A（A3 已移除）；第 4–6 題＝案例 B（B2 改寫為藥物選擇；B3、B5 已移除）")
