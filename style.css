@@ -34,6 +34,7 @@ input { font: inherit; }
 .chip { background: rgba(255,255,255,.15); padding: .4em .9em; border-radius: 8px; font-weight: 700; font-size: 1.2em; }
 .chip:hover { background: #e21b3c; text-decoration: line-through; }
 .qhead { background: #fff; color: #222; text-align: center; font-size: 2.2em; font-weight: 800; padding: 18px 24px; }
+.qhead .scene { font-size: .7em; font-weight: 600; color: #444; margin-bottom: 8px; line-height: 1.5; }
 .qbody { flex: 1; display: flex; align-items: center; justify-content: space-between; padding: 16px 30px; gap: 20px; min-height: 0; }
 .qimg { flex: 1; display: flex; justify-content: center; align-items: center; min-height: 0; height: 100%; }
 .qimg img { max-width: 100%; max-height: 46vh; border-radius: 8px; background: #fff; }

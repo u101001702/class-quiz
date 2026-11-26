@@ -54,7 +54,7 @@ function csvToQuiz(text, title, images) {
     const correct = (r[col("正解")] || "").toUpperCase().split(/[,，、\s]+/).filter(Boolean).map((L) => LETTERS.indexOf(L)).filter((x) => x >= 0);
     let img = (r[col("圖片")] || "").trim();
     if (img && !/^https:\/\//.test(img)) img = images[img] || "";
-    return { q: (r[col("題目")] || "").trim(), choices, correct, time: +(r[col("秒數")] || 20) || 20, img };
+    return { q: (r[col("題目")] || "").trim(), scene: col("情境") >= 0 ? (r[col("情境")] || "").trim() : "", choices, correct, time: +(r[col("秒數")] || 20) || 20, img };
   }).filter((x) => x.q && x.choices.length >= 2);
   return { title, questions };
 }
@@ -208,7 +208,7 @@ function runQuestion() {
   const q = quiz.questions[qi];
   app.innerHTML = `
     <div class="topbar"><span>第 ${qi + 1} / ${quiz.questions.length} 題</span><span>PIN ${pin}</span><button class="btn ghost" id="skip">直接結束本題</button></div>
-    <div class="qhead">${esc(q.q)}</div>
+    <div class="qhead">${q.scene ? `<div class="scene">${esc(q.scene)}</div>` : ""}${esc(q.q)}</div>
     <div class="qbody">
       <div class="timer" id="tm">${q.time}</div>
       <div class="qimg">${q.img ? `<img src="${esc(q.img)}" alt="">` : ""}</div>
@@ -279,7 +279,7 @@ function showReveal(counts) {
   const right = q.correct.reduce((a, c) => a + (counts[c] || 0), 0);
   app.innerHTML = `
     <div class="topbar"><span>第 ${qi + 1} / ${quiz.questions.length} 題</span><span>答對 ${right} / ${nPlayers()} 人（${nPlayers() ? Math.round(right / nPlayers() * 100) : 0}%）</span><button class="btn" id="nx">排行榜 ▶</button></div>
-    <div class="qhead">${esc(q.q)}</div>
+    <div class="qhead">${q.scene ? `<div class="scene">${esc(q.scene)}</div>` : ""}${esc(q.q)}</div>
     <div class="qbody">
       <div class="bars">${counts.map((n, i) => `
         <div class="bar ${q.correct.includes(i) ? "" : "dim"}">
